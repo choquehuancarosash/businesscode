@@ -149,7 +149,7 @@ const Container = styled.div`
     theme.bg3}, 0 0 7px ${(props) => props.
       theme.bg};
     display:flex;
-    aling-items:center;
+    align-items:center;
     justify-content:center;
     cursor:pointer;
     transition: all 0.3s;
@@ -189,7 +189,7 @@ const Container = styled.div`
     }
     .Links{
       display:flex;
-      aling-items:center;
+      align-items:center;
       text-decoration:none;
       padding:calc(${v.smSpacing}-2px) 0;
       color:${(props) => props.theme.text};

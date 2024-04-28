@@ -2,60 +2,67 @@ import React, { useEffect, useState } from 'react';
 import styled, { StyleSheetManager, createGlobalStyle } from 'styled-components';
 
 export default function Login() {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    });
-    const [autentication, setAutentication] = useState(false);
+  const [autentication, setAutentication] = useState(undefined);//Se inicializo como undefined para pdoer hacer la jugada del true y false del useEffect
+  const [response, setResponse] = useState ("");
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  useEffect(() => {//Para visualizar el valor correcto del estado luego de actualizarlo
+    console.log(response);
+    console.log(autentication);
+  }, [response]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-        if (formData?.username == "hans"
-            && formData?.password == '123') {
-            setAutentication(true);
-        } else {
-            setAutentication(false);
-        }
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData?.username == "hans"
+      && formData?.password == '123') {
+      setAutentication(true);
+      setResponse("Inicio sesión correcto");
+    } else {
+      setAutentication(false);
+      setResponse("Usuario o contraseña incorrecto, intente nuevamente");
+    }
+  };
 
-    return (
-        <StyleSheetManager>
-            <GlobalStyles />
-            <LoginContainer>
-                <h1>Bussiness Code</h1>
-                <br />
-                <LoginForm onSubmit={handleSubmit}>
-                    <label>
-                        Usuario:
-                        <InputField
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Contraseña:
-                        <InputField
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <br />
-                    <SubmitButton type="submit">Iniciar Sesión</SubmitButton>
-                </LoginForm>
-            </LoginContainer>
-        </StyleSheetManager>
-    );
+  return (
+    <StyleSheetManager>
+      <GlobalStyles />
+      <LoginContainer>
+        <h1>Bussiness Code</h1>
+        <br />
+        <LoginForm onSubmit={handleSubmit}>
+          <label>
+            Usuario:
+            <InputField
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Contraseña:
+            <InputField
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <SubmitButton type="submit">Iniciar Sesión</SubmitButton>
+        </LoginForm>
+      </LoginContainer>
+    </StyleSheetManager>
+  );
 }
 
 // Estilos globales para toda la aplicación

@@ -24,7 +24,7 @@ function App() {
           theme={themeStyle}>
           <BrowserRouter>
             {
-              !autentication?
+              autentication?
                 <Container className=
                   {sidebarOpen
                     ? "sidebarState active"
